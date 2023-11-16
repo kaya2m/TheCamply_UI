@@ -21,13 +21,13 @@ export class ProductComponent  extends BaseComponent  implements OnInit{
     // this.httpClient.get({controller:"products"})
     // .subscribe(data=>console.log(data));
 
-  //  this.httpClient.post({
-  //   controller:"products"
-  // },{
-  //   name:"PAsta Süsü",
-  //   price:100,
-  //   stock:100
-  // }).subscribe();
+   // this.httpClient.post({
+   //  controller:"products"
+   //},{
+   //  name:"mkaarna",
+   //  price:100,
+   //  stock:100
+   //}).subscribe();
  
   // this.httpClient.put({
   //   controller:"products",
