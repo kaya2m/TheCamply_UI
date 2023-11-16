@@ -16,8 +16,10 @@ export class ProductComponent  extends BaseComponent  implements OnInit{
   }
   ngOnInit(): void {
     this.showSpinner(SpinnerType.ballAtom);
-    this.httpClient.get({controller:"products"})
-    .subscribe(data=>console.log(data));
+    
+    
+    // this.httpClient.get({controller:"products"})
+    // .subscribe(data=>console.log(data));
 
   //  this.httpClient.post({
   //   controller:"products"
@@ -27,12 +29,12 @@ export class ProductComponent  extends BaseComponent  implements OnInit{
   //   stock:100
   // }).subscribe();
  
-  this.httpClient.put({
-    controller:"products",
-  },{
-    id:"0af14641-f0e3-4c99-ab4b-ed20b3dfcfaa",
-    name:"Çilek",
-    price:100,
-    stock:100
-  }).subscribe();
+  // this.httpClient.put({
+  //   controller:"products",
+  // },{
+  //   id:"0af14641-f0e3-4c99-ab4b-ed20b3dfcfaa",
+  //   name:"Çilek",
+  //   price:100,
+  //   stock:100
+  // }).subscribe();
 }}
