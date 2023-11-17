@@ -4,9 +4,8 @@ import { ProductComponent } from '../product/product.component';
 import { RouterModule } from '@angular/router';
 import { CreateComponent } from './create/create.component';
 import { ListComponent } from './list/list.component';
-
-
-
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [
     ProductComponent,
@@ -17,7 +16,9 @@ import { ListComponent } from './list/list.component';
     CommonModule,
     RouterModule.forChild([
       { path: "", component: ProductComponent}
-    ])
+    ]),
+    MatTableModule,
+    MatPaginatorModule
   ]
 })
 export class ProductModule { }
