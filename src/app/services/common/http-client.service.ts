@@ -47,14 +47,17 @@ export class HttpClientService {
   }
 
   delete<T>(requestParams: Partial<RequestParams>, id: string): Observable<T> {
-    let url : string = "";
+    let url: string = "";
+  
     if (requestParams.fullEndPoint) {
       url = requestParams.fullEndPoint;
-    }else{
-      url = `${this.url(requestParams)}${requestParams.queryString ? `?${requestParams.queryString}` : ''}`;
+    } else {
+      url = `${this.url(requestParams)}/${id}`; 
     }
+  
     return this.httpClient.delete<T>(url, { headers: requestParams.headers });
   }
+  
 }
 
 export class RequestParams {

@@ -6,7 +6,7 @@ import { BaseComponent, SpinnerType } from 'src/app/base/base.component';
 import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
 import { ProductService } from 'src/app/services/common/models/product.service';
 import { List_Products } from 'src/app/services/contracts/List_Products';
-
+declare var $: any;
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -14,12 +14,13 @@ import { List_Products } from 'src/app/services/contracts/List_Products';
 })
 export class ListComponent extends BaseComponent implements OnInit {
 
+
 constructor(private productService:ProductService, spinner : NgxSpinnerService, private alertifyService: AlertifyService) 
 { 
   super(spinner);
  }
  
- displayedColumns: string[] = ['name', 'price', 'stock', 'updatedDate', 'createDate'];
+ displayedColumns: string[] = ['name', 'price', 'stock', 'updatedDate', 'createDate','edit','delete'];
  
  dataSource : MatTableDataSource<List_Products>= null;
 
@@ -44,6 +45,11 @@ constructor(private productService:ProductService, spinner : NgxSpinnerService, 
  async pageChanged(){
   await this.getProductList();
  }
+
+//  delete(id: string,event ) {
+//  const img :  HTMLImageElement = event.srcElement;
+//  $(img.parentElement.parentElement).fadeOut(500);
+//   }
  async ngOnInit() {
 await this.getProductList();
 }
