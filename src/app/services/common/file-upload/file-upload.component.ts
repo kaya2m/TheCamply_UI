@@ -4,6 +4,10 @@ import { HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { HttpClientService } from '../http-client.service';
 import { AlertifyService, MessageType, Position } from '../../admin/alertify.service';
 import { CustomToastrServiceService, ToastrMessageType, ToastrPosition } from '../../ui/custom-toastr-service.service';
+import { MatDialog } from '@angular/material/dialog';
+import { FileUploadDialogComponent } from 'src/app/dialogs/file-upload-dialog/file-upload-dialog.component';
+import { FileUploadDialogState } from 'src/app/dialogs/base/base-dialog';
+import { DialogService } from '../dialog.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -14,7 +18,9 @@ export class FileUploadComponent {
   constructor(
     private httpClient: HttpClientService,
     private alertify: AlertifyService,
-    private toastr: CustomToastrServiceService
+    private toastr: CustomToastrServiceService,
+    private dialog: MatDialog,
+    private dialogService: DialogService
   ) {}
 
   public files: NgxFileDropEntry[];
@@ -30,47 +36,54 @@ export class FileUploadComponent {
       });
     }
 
-    this.httpClient.post({
-      controller: this.options.controller,
-      action: this.options.action,
-      queryString: this.options.queryString,
-      headers: new HttpHeaders({ "responseType": "blob" })
-    }, fileData).subscribe(data => {
+    this.dialogService.openDialog({
+      componentType: FileUploadDialogComponent,
+      data: FileUploadDialogState.Yes,
+      afterClosed: () => {
+        this.httpClient.post({
+          controller: this.options.controller,
+          action: this.options.action,
+          queryString: this.options.queryString,
+          headers: new HttpHeaders({ 'responseType': 'blob' })
+        }, fileData).subscribe(
+          (data) => {
+            const message: string = 'Dosyalar başarıyla yüklenmiştir.';
 
-      const message: string = "Dosyalar başarıyla yüklenmiştir.";
+            if (this.options.isAdminPage) {
+              this.alertify.message(message, {
+                dismissOther: true,
+                messageType: MessageType.Success,
+                position: Position.TopRight
+              });
+            } else {
+              this.toastr.message(message, 'Başarılı', {
+                messageType: ToastrMessageType.Success,
+                position: ToastrPosition.TopRight,
+              });
+            }
+          },
+          (error: HttpErrorResponse) => {
+            const message: string = 'Dosya yüklenirken bir hata oluştu';
 
-        if (this.options.isAdminPage) {
-          this.alertify.message(message, {
-            dismissOther: true,
-            messageType: MessageType.Success,
-            position: Position.TopRight
-          });
-        } else {
-          this.toastr.message(message, 'Başarılı', {
-            messageType: ToastrMessageType.Success,
-            position: ToastrPosition.TopRight,
-          });
-        }
-      },
-      (error: HttpErrorResponse) => {
-        const message: string = 'Dosya yüklenirken bir hata oluştu';
-
-        if (this.options.isAdminPage) {
-          this.alertify.message(message, {
-            dismissOther: true,
-            messageType: MessageType.Error,
-            position: Position.TopRight
-          });
-        } else {
-          this.toastr.message(message, 'Başarısız', {
-            messageType: ToastrMessageType.Error,
-            position: ToastrPosition.TopRight,
-          });
-        }
+            if (this.options.isAdminPage) {
+              this.alertify.message(message, {
+                dismissOther: true,
+                messageType: MessageType.Error,
+                position: Position.TopRight
+              });
+            } else {
+              this.toastr.message(message, 'Başarısız', {
+                messageType: ToastrMessageType.Error,
+                position: ToastrPosition.TopRight,
+              });
+            }
+          }
+        );
       }
-    );
+    });
   }
 }
+
 export class FileUploadOptions {
   controller?: string;
   action?: string;

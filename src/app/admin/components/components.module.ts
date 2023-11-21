@@ -14,7 +14,7 @@ import { OrderModule } from './order/order.module';
     CommonModule,
     ProductModule,
     CustomerModule,
-    OrderModule
+    OrderModule,
   ]
 })
 export class ComponentsModule { }
