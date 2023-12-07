@@ -11,12 +11,12 @@ export class DeleteDialogComponent extends BaseDialog<DeleteDialogComponent> {
 
   constructor(
     dialogRef: MatDialogRef<DeleteDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: FileUploadDialogState,
+    @Inject(MAT_DIALOG_DATA) public data: DeleteState ,
   ) {
     super(dialogRef);
   }
 }
-export enum FileUploadDialogState{
+export enum DeleteState {
   Yes,
   No
 }

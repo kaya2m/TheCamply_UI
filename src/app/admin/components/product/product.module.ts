@@ -10,6 +10,7 @@ import { DeleteDirective } from 'src/app/directives/admin/delete.directive';
 import {MatDialog} from '@angular/material/dialog';
 import { FileUploadModule } from 'src/app/services/common/file-upload/file-upload.module';
 import { DialogModule } from 'src/app/dialogs/dialog.module';
+import { NgxSpinner, NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [
     ProductComponent,
@@ -26,7 +27,8 @@ import { DialogModule } from 'src/app/dialogs/dialog.module';
     MatTableModule,
     MatPaginatorModule,
     DialogModule,
-    FileUploadModule
+    FileUploadModule,
+    NgxSpinnerModule
   ]
 })
 export class ProductModule { }

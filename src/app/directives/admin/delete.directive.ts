@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Directive, ElementRef, EventEmitter, HostListener, Input, Output, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DeleteDialogComponent, FileUploadDialogState } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
+import { DeleteDialogComponent, DeleteState } from 'src/app/dialogs/delete-dialog/delete-dialog.component';
 import { AlertifyService, MessageType, Position } from 'src/app/services/admin/alertify.service';
 import { DialogService } from 'src/app/services/common/dialog.service';
 import { HttpClientService } from 'src/app/services/common/http-client.service';
@@ -35,7 +35,7 @@ export class DeleteDirective {
   async onClick() {
     this.dialogservice.openDialog({
       componentType: DeleteDialogComponent,
-      data: FileUploadDialogState.Yes,
+      data: DeleteState.Yes,
       afterClosed: () => {
         const td: HTMLTableCellElement = this.element.nativeElement;
         this.httpclient.delete({ controller: this.controller }, this.id).subscribe(

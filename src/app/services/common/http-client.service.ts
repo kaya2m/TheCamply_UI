@@ -46,18 +46,15 @@ export class HttpClientService {
     return this.httpClient.put<T>(url, body, { headers: requestParams.headers });
   }
 
-  delete<T>(requestParams: Partial<RequestParams>, id: string): Observable<T> {
+  delete<T>(requestParameter: Partial<RequestParams>, id: string): Observable<T> {
     let url: string = "";
-  
-    if (requestParams.fullEndPoint) {
-      url = requestParams.fullEndPoint;
-    } else {
-      url = `${this.url(requestParams)}/${id}`; 
-    }
-  
-    return this.httpClient.delete<T>(url, { headers: requestParams.headers });
+    if (requestParameter.fullEndPoint)
+      url = requestParameter.fullEndPoint;
+    else
+      url = `${this.url(requestParameter)}/${id}${requestParameter.queryString ? `?${requestParameter.queryString}` : ""}`;
+
+    return this.httpClient.delete<T>(url, { headers: requestParameter.headers});
   }
-  
 }
 
 export class RequestParams {
