@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { CustomToastrServiceService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr-service.service';
+import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr-service.service';
 import { Position } from './services/admin/alertify.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { Position } from './services/admin/alertify.service';
 })
 export class AppComponent{
   title = 'CamplyUI';
-  constructor(private toastrService:CustomToastrServiceService) {
+  constructor(private toastrService:CustomToastrService) {
     toastrService.message('Hello world!', 'Toastr fun!', { messageType: ToastrMessageType.Success, position: ToastrPosition.BottomRight });
   }
 
