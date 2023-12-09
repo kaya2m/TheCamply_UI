@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Camply E-Ticaret</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .custom-spinner {
             background-color: rgba(0, 0, 0, 0.8);
@@ -14,67 +16,67 @@
             from {
                 transform: rotate(0deg);
             }
+
             to {
                 transform: rotate(360deg);
             }
         }
     </style>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary"data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
         <div class="container-fluid">
-          <a class="navbar-brand" routerLink="">Camply E-Ticaret</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" routerLink="home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" routerLink="product">Products</a> 
-              </li>
-              <li class="nav-item">
-                <a class="nav-link"  routerLink="basket">Baskets</a>
-              </li>
-              <li class="nav-item ">
-                <a class="nav-link" routerLink="admin">Yönetim Paneli</a> 
-              </li>
-              <li class="nav-item float-end">
-                <a class="nav-link" routerLink="register">Kayıt Ol</a> 
-              </li>
-            </ul>
-          </div>
+            <a class="navbar-brand" routerLink="">Camply E-Ticaret</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" routerLink="home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="product">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="basket">Baskets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ngClass="text-danger" routerLink="admin">Yönetim Paneli</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="login">Giriş Yap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="register">Kayıt Ol</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </nav>
-      
-      <router-outlet></router-outlet>
+    </nav>
 
-      <ngx-spinner
-      name="spinner1"
-      type="ball-atom"
-      size="medium"
-      color="#ff0"
-      background="linear-gradient(to right, #ff0, #9400d3)"
-      bdColor="rgba(0, 0, 0, 0.8)"
-      [fullScreen]="true"
-    >
-      <p style="color: white">Yükleniyor...</p>
+    <div class="container mt-4">
+        <router-outlet></router-outlet>
+    </div>
+
+    <ngx-spinner name="spinner1" type="ball-atom" size="medium" color="#ff0"
+        background="linear-gradient(to right, #ff0, #9400d3)" bdColor="rgba(0, 0, 0, 0.8)" [fullScreen]="true">
+        <p style="color: white">Yükleniyor...</p>
     </ngx-spinner>
-    <ngx-spinner
-    name="spinner2"
-    type="square-jelly-box"
-    size="medium"
-    color="#ff0"
-    background="linear-gradient(to right, #ff0, #9400d3)"
-    bdColor="rgba(0, 0, 0, 0.8)"
-    [fullScreen]="true"
-  >
-    <p style="color: white">Yükleniyor...</p>
-  </ngx-spinner>
-    
+    <ngx-spinner name="spinner2" type="square-jelly-box" size="medium" color="#ff0"
+        background="linear-gradient(to right, #ff0, #9400d3)" bdColor="rgba(0, 0, 0, 0.8)" [fullScreen]="true">
+        <p style="color: white">Yükleniyor...</p>
+    </ngx-spinner>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>
-
-

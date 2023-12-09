@@ -42,6 +42,11 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () =>
       import('./ui/components/register/register.module').then((m) => m.RegisterModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./ui/components/login/login.module').then((m) => m.LoginModule),
   }
 ];
 
