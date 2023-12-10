@@ -18,7 +18,6 @@ this.alertify.message("Welcome to Camply Dashboard",{messageType:MessageType.Suc
   position:Position.TopCenter,
   delay:3,
   dismissOther:true});
-  this.showSpinner(SpinnerType.ballAtom);
   }
   
 }

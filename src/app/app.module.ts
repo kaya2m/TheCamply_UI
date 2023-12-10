@@ -8,6 +8,7 @@ import { UIModule } from './ui/ui.module';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientModule } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -24,6 +25,13 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     AdminModule,
     UIModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+             return     localStorage.getItem('accessToken');},
+        allowedDomains: ['localhost:7108']
+      },
+    })
     
   ],
   providers: [
