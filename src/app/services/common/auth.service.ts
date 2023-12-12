@@ -10,9 +10,11 @@ export class AuthService {
   identitycheck()
   {
     const token = localStorage.getItem('accessToken');
+
   let expired:boolean ;
   try {
     expired = this.jwtHelper.isTokenExpired(token);
+
   } catch (error) {
     expired = true;
   }

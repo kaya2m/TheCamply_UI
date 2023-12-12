@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/common/auth.service';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr-service.service';
-import { MessageType } from './services/admin/alertify.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,11 +10,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent{
 
-
   constructor(public authService: AuthService, 
     private toastr:CustomToastrService,
     private router:Router) {
-    authService.identitycheck();
   }
   signOut() {
     localStorage.removeItem('accessToken');
