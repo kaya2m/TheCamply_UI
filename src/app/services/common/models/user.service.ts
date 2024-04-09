@@ -27,7 +27,7 @@ export class UserService {
   async login(UsernameOrEmail: string, password: string, callBackFunction?:()=>void): Promise<void> {
     const observable: Observable<any | TokenResponse> = this.httpClient.post<any | TokenResponse>(
       {
-        controller: 'user',
+        controller: 'Auth',
         action: 'login'
       }, { UsernameOrEmail, password }
     );
@@ -47,7 +47,7 @@ export class UserService {
   async googleLogin(user:SocialUser,callBackFunction?:()=>void): Promise<void> {
      const observable : Observable<SocialUser|TokenResponse>=   this.httpClient.post<SocialUser|TokenResponse>({
         action: "google-login",
-        controller: "User"
+        controller: "Auth"
       },user);
       debugger
       const tokenResponse : TokenResponse= await firstValueFrom(observable) as TokenResponse;
@@ -64,10 +64,9 @@ export class UserService {
   async facebookLogin(user:SocialUser,callBackFunction?:()=>void): Promise<void> {
     const observable : Observable<SocialUser|TokenResponse> = this.httpClient.post<SocialUser|TokenResponse>({
       action: "facebook-login",
-      controller: "User"
+      controller: "Auth"
     },user);
-
-    const tokenResponse : TokenResponse= await firstValueFrom(observable) as TokenResponse;
+    const tokenResponse : TokenResponse = await firstValueFrom(observable) as TokenResponse;
     if(tokenResponse){
       localStorage.setItem("accessToken",tokenResponse.token.accessToken);
       this.toastrService.message("Giriş başarıyla sağlanmıştır (Facebook_Login)", "Giriş Başarılı",{
