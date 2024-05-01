@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { AuthService } from './services/common/auth.service';
 import { CustomToastrService, ToastrMessageType, ToastrPosition } from './services/ui/custom-toastr-service.service';
 import { Router } from '@angular/router';
@@ -9,6 +9,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent{
+  isSticky: boolean = false;
+
+  @HostListener('window:scroll', ['$event'])
+  checkScroll() {
+    if(window.pageYOffset > 150){
+    this.isSticky = true;
+    }else {
+    this.isSticky = false;
+    }
+  }
 
   constructor(public authService: AuthService, 
     private toastr:CustomToastrService,
@@ -22,5 +32,8 @@ export class AppComponent{
       messageType:ToastrMessageType.Info,
       position:ToastrPosition.TopRight
     });
-    }
+  
+  }
 }
+
+

@@ -25,45 +25,31 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" routerLink="">Camply E-Ticaret</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" routerLink="home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="product">Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="basket">Baskets</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" ngClass="text-danger" routerLink="admin"*ngIf="authService.isAuthenticated">Yönetim Paneli</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="login" *ngIf="!authService.isAuthenticated">Giriş Yap</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="register" *ngIf="!authService.isAuthenticated">Kayıt Ol</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="login" *ngIf="authService.isAuthenticated" style="cursor: pointer;" (click)="signOut()">Çıkış Yap</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+   <div class="sticky-top">
+           <nav class="navbar navbar-expand-lg navbar-light p-0" id="navBar" [ngClass]="{sticky: isSticky}">
+               <a href="index.html" class="navbar-brand ms-5" >
+                <img src="../../../../assets/camply_logo.png" style="width: 150px;" alt="Camply Logo">
+               </a>
+               <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
+                   data-bs-target="#navbarCollapse">
+                   <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarCollapse">
+                   <div class="navbar-nav ms-auto">
+                    <a class="nav-link" aria-current="page" routerLink="home"*ngIf="!authService.isAuthenticated"><i class="fa-solid fa-tent"></i> Home</a>
+                    <a class="nav-link" routerLink="product"*ngIf="!authService.isAuthenticated">Products</a>
+                    <a class="nav-link" routerLink="basket"*ngIf="!authService.isAuthenticated">Baskets</a>
+                       <a href="" class="nav-item nav-link"*ngIf="!authService.isAuthenticated">Contact</a>
+                       <a class="nav-link" routerLink="login" *ngIf="!authService.isAuthenticated">Giriş Yap</a>
+                       <a class="nav-link" routerLink="register" *ngIf="!authService.isAuthenticated">Kayıt Ol</a>
+                       <a class="nav-link" ngClass="text-danger" routerLink="admin"*ngIf="authService.isAuthenticated">Yönetim Paneli</a>
+                       <a class="nav-link" routerLink="login" *ngIf="authService.isAuthenticated" style="cursor: pointer;" (click)="signOut()">Çıkış Yap</a>
+                   </div>
+               </div>
+           </nav>
+   </div>
 
-    <div class="container mt-4">
+    <div class="">
         <router-outlet></router-outlet>
     </div>
 
@@ -75,11 +61,6 @@
         background="linear-gradient(to right, #ff0, #9400d3)" bdColor="rgba(0, 0, 0, 0.8)" [fullScreen]="true">
         <p style="color: white">Yükleniyor...</p>
     </ngx-spinner>
-
-    <!-- Bootstrap JS and Popper.js -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>
